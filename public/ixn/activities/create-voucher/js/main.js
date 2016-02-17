@@ -14,9 +14,7 @@ requirejs.config({
 });
 
 requirejs( ['vendor/jquery.min', 'CreateVoucher'], function( $, CreateVoucher ) {
-    $('#btn').on('click', function() {
-        alert('Button I Am');
-    });  
+    // Do something with jQuery.... 
 });
 
 requirejs.onError = function( err ) {

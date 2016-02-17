@@ -1,6 +1,5 @@
 {
     "workflowApiVersion": "1.0",
-    "key": "je-voucher-create-activity",
     "partnerApiObjectTypeId": "IXN.CustomActivity.REST",
     "metaData": {
         "version": "2.0",
@@ -16,7 +15,7 @@
     },
     "arguments": {
         "execute": {
-			"inArguments":[],
+			"inArguments":[], // TODO: Email address?
             "outArguments": [
             	{ "voucherCode":"text" }
 			],
@@ -31,7 +30,7 @@
     },
     "configurationArguments": {
     	"applicationExtensionKey": "je-voucher-create-activity",
-        "defaults": { "priority": "4"},
+        "defaults": { "priority": "99"},
         "save": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
             "body": "",

@@ -1,8 +1,7 @@
 'use strict';
 // Module Dependencies
 // -------------------
-require('dotenv').load();
-var contextFrom   = require('./lib/envToContextMapper');
+var config        = require('konfig')();
 var express       = require('express');
 var http          = require('http');
 var JWT           = require('./lib/jwtDecoder');
@@ -10,19 +9,18 @@ var path          = require('path');
 var request       = require('request');
 var routes        = require('./routes');
 var activity      = require('./routes/activity');
-var pkgjson     = require('./package.json');
+var pkgjson       = require('./package.json');
 
-var context = contextFrom(process.env);
 var app = express();
 
 // Register configs for the environments where the app functions
 // , these can be stored in a separate file using a module like config
 var APIKeys = {
-    appId           : context.appId,
-    clientId        : context.clientId,
-    clientSecret    : context.clientSecret,
-    appSignature    : context.appSignature,
-    authUrl         : context.authUrl
+    appId           : config.appId,
+    clientId        : config.clientId,
+    clientSecret    : config.clientSecret,
+    appSignature    : config.appSignature,
+    authUrl         : config.authUrl
 };
 
 // Simple custom middleware
@@ -49,7 +47,7 @@ app.use(express.cookieParser());
 app.use(express.cookieSession({secret: "JeVoucherActivity-CookieSecret"}));
 
 // Configure Express
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.port || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));

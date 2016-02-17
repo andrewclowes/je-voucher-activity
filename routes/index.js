@@ -1,6 +1,5 @@
 'use strict';
 
-// Deps
 var activity = require('./activity');
 
 /*

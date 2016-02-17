@@ -1,0 +1,13 @@
+
+{
+  "default": {
+    "port": 3000,
+    "tenant": "uk",
+    "appId": "c05eb53c-b456-4914-96c6-8faec46b0ef8",
+    "clientId": "xowqhbfsutdtbgil9jyrqhg4",
+    "clientSecret": "ucoJCaPFOYTxhDX5d0xuPxLr",
+    "appSignature": "wslqbvwzcyh1ovlloovh41nymg1jscbtn01udzfy1epeug22yjvatkdsvugmrys32ckh23keflp2paoruurwdgfjla1ivz2stayisygcvft2y4rksih3ne53fqwheouxdalwdfnxjjyny4cdw4y5vzntveloiibhjtwracm0udvohhgdizn1lw0ulkc3ylrk125ebzf02ui4zp20zjju4g5v3kr0bimzxirj20dxfbrhqma0h1pqxiydusg0mf4",
+    "authUrl": "https://auth.exacttargetapis.com/v1/requestToken?legacy=1",
+    "voucherApiHost": "voucherapi.simples.je-labs.com"
+  }
+}

@@ -14,7 +14,9 @@ requirejs.config({
 });
 
 requirejs( ['vendor/jquery.min', 'CreateVoucher'], function( $, CreateVoucher ) {
-	//console.log( 'REQUIRE LOADED' );
+    $('#btn').on('click', function() {
+        alert('Button I Am');
+    });  
 });
 
 requirejs.onError = function( err ) {

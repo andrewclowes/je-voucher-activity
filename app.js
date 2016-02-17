@@ -1,7 +1,7 @@
 'use strict';
 // Module Dependencies
 // -------------------
-var config        = require('konfig')();
+var konfig        = require('konfig')();
 var express       = require('express');
 var http          = require('http');
 var JWT           = require('./lib/jwtDecoder');
@@ -13,7 +13,7 @@ var pkgjson       = require('./package.json');
 
 var app = express();
 
-console.log(config);
+var config = konfig.app;
 
 // Register configs for the environments where the app functions
 // , these can be stored in a separate file using a module like config

@@ -1,6 +1,6 @@
 {
   "name": "je-voucher-activity",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -14,7 +14,8 @@
     "require": "~0.5.0"
   },
   "engines": {
-    "node": "0.10.7"
+    "node": "5.5.0",
+    "npm": "3.3.12"
   },
   "license": "BSD-3-Clause"
 }

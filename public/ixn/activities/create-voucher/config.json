@@ -30,7 +30,7 @@
     },
     "configurationArguments": {
     	"applicationExtensionKey": "je-voucher-create-activity",
-        "defaults": { "priority": "99"},
+        "defaults": { "amount": "10"},
         "save": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
             "body": "",

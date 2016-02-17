@@ -13,6 +13,8 @@ var pkgjson       = require('./package.json');
 
 var app = express();
 
+console.log(config);
+
 // Register configs for the environments where the app functions
 // , these can be stored in a separate file using a module like config
 var APIKeys = {

@@ -8,6 +8,7 @@ var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
+var pkgjson     = require('./package.json');
 
 var app = express();
 
@@ -95,6 +96,10 @@ app.get( '/version', function( req, res ) {
 		version: pkgjson.version
 	} ) );
 } );
+
+app.get('/health/check', function(req, res) {
+   res.render('check', {});
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

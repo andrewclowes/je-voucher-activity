@@ -10,7 +10,9 @@ var activityUtils = require('./activityUtils');
 exports.edit = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
+    console.log("================");
     console.log('ROUTE = EDIT');
+    console.log("================");
     activityUtils.logData( req );
     res.send( 200, 'Edit' );
 };
@@ -21,7 +23,9 @@ exports.edit = function( req, res ) {
 exports.save = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
+    console.log("================");
     console.log('ROUTE = SAVE');
+    console.log("================");
     activityUtils.logData( req );
     res.send( 200, 'Save' );
 };
@@ -32,7 +36,9 @@ exports.save = function( req, res ) {
 exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
+    console.log("================");
     console.log('ROUTE = EXECUTE');
+    console.log("================");
     activityUtils.logData( req );
 
     var aArgs = req.body.inArguments;
@@ -54,7 +60,9 @@ exports.execute = function( req, res ) {
 exports.publish = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
+    console.log("================");
     console.log('ROUTE = PUBLISH');
+    console.log("================");
     activityUtils.logData( req );
     res.send( 200, 'Publish' );
 };
@@ -65,7 +73,9 @@ exports.publish = function( req, res ) {
 exports.validate = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
+    console.log("================");
     console.log('ROUTE = VALIDATE');
+    console.log("================");
     activityUtils.logData( req );
     res.send( 200, 'Validate' );
 };

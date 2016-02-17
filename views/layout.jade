@@ -14,8 +14,6 @@ html.no-js
     title= pageTitle
     meta(name='description', content='Validates ExactTarget Journey Builder config.js files for Custom Activities and Custom Triggers')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='stylesheets/normalize-css/normalize.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
   body!= body
     //if lt IE 7
       p.browsehappy
@@ -26,14 +24,4 @@ html.no-js
     //- Add your site or application content here
     div#interface
         h1.centered= title
-        p.centered
-            if errorMessage
-                strong= errorMessage
-            else
-                strong ExactTarget Journey Builder Custom Trigger and Custom Activity Example 
-        hr
         block content
-
-    script.
-      window.jQuery || document.write('<script src="javascripts/jquery/jquery.min.js"><\/script>')
-    script(src='javascripts/script.js')

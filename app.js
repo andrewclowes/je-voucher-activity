@@ -51,7 +51,7 @@ app.use(express.cookieParser());
 app.use(express.cookieSession({secret: "JeVoucherActivity-CookieSecret"}));
 
 // Configure Express
-app.set('port', config.port || 3000);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));

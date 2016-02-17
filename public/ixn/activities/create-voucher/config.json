@@ -1,5 +1,7 @@
 {
     "workflowApiVersion": "1.0",
+    "key": "je-voucher-create-activity",
+    "partnerApiObjectTypeId": "IXN.CustomActivity.REST",
     "metaData": {
         "version": "2.0",
         "icon": "images/jb-icon.jpg",
@@ -18,7 +20,7 @@
             "outArguments": [
             	{ "voucherCode":"text" }
 			],
-			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-case/execute/",
+			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute/",
             "verb": "POST",
             "body": "",
             "header": "",
@@ -31,26 +33,26 @@
     	"applicationExtensionKey": "je-voucher-create-activity",
         "defaults": { "priority": "4"},
         "save": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-case/save/",
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
             "body": "",
             "verb": "POST",
             "useJwt": false
         },
         "publish": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-case/publish/",
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish/",
             "verb": "POST",
             "body": "",
             "useJwt": false
         },
         "validate": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-case/validate/",
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate/",
             "verb": "POST",
             "body": "",
             "useJwt": false
         }
     },
     "edit": {
-    	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-case/",
+    	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
         "height": 400,
         "width": 500
     }

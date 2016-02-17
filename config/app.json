@@ -1,7 +1,7 @@
 
 {
   "default": {
-    "port": 3000,
+    "port": 80,
     "tenant": "uk",
     "appId": "c05eb53c-b456-4914-96c6-8faec46b0ef8",
     "clientId": "xowqhbfsutdtbgil9jyrqhg4",

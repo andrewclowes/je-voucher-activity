@@ -1,10 +1,9 @@
 {
-    "workflowApiVersion": "1.0",
-    //"partnerApiObjectTypeId": "IXN.CustomActivity.REST",
+    "workflowApiVersion": "1.1",
     "metaData": {
-        "version": "2.0",
         "icon": "images/wallet-doodle.jpg",
-        "iconSmall": "images/wallet-doodle.jpg"
+        "iconSmall": "images/wallet-doodle.jpg",
+        "category": "message"
     },
     "type": "REST",
     "lang": {
@@ -16,9 +15,7 @@
     "arguments": {
         "execute": {
 			"inArguments":[],
-            "outArguments": [
-            	{ "voucherCode":"text" }
-			],
+            "outArguments": [ { "voucherCode": "" } ],
 			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute/",
             "verb": "POST",
             "body": "",
@@ -35,24 +32,44 @@
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
             "body": "",
             "verb": "POST",
+            "format": "json",
             "useJwt": false
         },
         "publish": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish/",
             "verb": "POST",
             "body": "",
+            "format": "json",
             "useJwt": false
         },
         "validate": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate/",
             "verb": "POST",
             "body": "",
+            "format": "json",
             "useJwt": false
         }
     },
-    "edit": {
-    	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
-        "height": 400,
-        "width": 500
+    "userInterfaces": {
+        "configModal": {
+            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
+            "height": 400,
+            "width": 500
+        }
+    },
+    "schema": {
+        "arguments": {
+            "execute": {
+                "outArguments": [
+                    {
+                        "voucherCode": {
+                            "dataType": "Text",
+                            "isNullable": false,
+                            "access": "Visible"
+                        }
+                    }
+                ]
+            }
+        }
     }
 }

@@ -47,7 +47,7 @@ define( function( require ) {
         var amount = passedInArgs['amount'] || defaultArgs['amount'];
         
         $('#voucher_amount').val(amount);
-        $('#payload').val(JSON.stringify(payload, null, 4));
+        $('pre').text(JSON.stringify(payload, null, 4));
     }
     
     function onClickedSave() {
@@ -59,8 +59,8 @@ define( function( require ) {
         console.log('onRender event fired');
         
         connection.trigger('ready');
-		connection.trigger('requestTokens');
-		connection.trigger('requestEndpoints');
+		//connection.trigger('requestTokens');
+		//connection.trigger('requestEndpoints');
         
         $('#voucher_amount').on('change', function() {
             $('p.amount').text($('#voucher_amount').val());
@@ -68,10 +68,9 @@ define( function( require ) {
     }
     
     function save() {
-        alert('Saving...');
         var amount = $('#voucher_amount').val();
         
-        payload.name = "Moo";
+        payload.name = "Mooooooooo";
         payload['arguments'].execute.inArguments = [{ "amount": amount }];
         payload['metaData'].isConfigured = true;
         

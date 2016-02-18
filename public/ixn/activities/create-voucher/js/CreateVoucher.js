@@ -35,6 +35,7 @@ define( function( require ) {
     function onClickedSave() {
         var amount = $('#voucher_amount').val();
         
+        payload.name = '£' + amount + ' voucher';
         payload['arguments'].execute.inArguments = [{ "amount": amount }];
         payload['metaData'].isConfigured = true;
         

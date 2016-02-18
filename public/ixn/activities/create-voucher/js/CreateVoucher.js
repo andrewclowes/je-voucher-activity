@@ -41,13 +41,21 @@ define( function( require ) {
             payload = data;
         }
         
-        var passedInArgs = payload['arguments'].execute.inArguments;
         var defaultArgs = payload['configurationArguments'].defaults;
         
-        var amount = passedInArgs['amount'] || defaultArgs['amount'];
+        var passedInArgs = payload['arguments'].execute.inArguments;
+        var existingArgs = {};
+        
+        for(var i = 0; i < passedInArgs.length; i++) {
+            for(var key in passedInArgs[i]) {
+                existingArgs[key] = passedInArgs[i][key];
+            }
+        }
+        
+        var amount = existingArgs.amount || defaultArgs['amount'];
         
         $('#voucher_amount').val(amount);
-        $('pre').text(JSON.stringify(passedInArgs, null, 4));
+        $('pre').text(JSON.stringify(existingArgs, null, 4));
     }
     
     function onClickedSave() {
@@ -70,12 +78,9 @@ define( function( require ) {
     function save() {
         var amount = $('#voucher_amount').val();
         
-        payload.name = "Mooooooooo";
         payload['arguments'].execute.inArguments = [{ "amount": amount }];
         payload['metaData'].isConfigured = true;
         
         connection.trigger('updateActivity', payload);
-        
-        alert('Saved.');
     }
 });

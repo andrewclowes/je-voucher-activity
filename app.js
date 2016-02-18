@@ -12,10 +12,7 @@ var activity      = require('./routes/activity');
 var pkgjson       = require('./package.json');
 
 var app = express();
-
 var config = konfig.app;
-
-console.log(process.env);
 
 // Register configs for the environments where the app functions
 // , these can be stored in a separate file using a module like config

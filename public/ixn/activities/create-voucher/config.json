@@ -1,6 +1,6 @@
 {
     "workflowApiVersion": "1.0",
-    "partnerApiObjectTypeId": "IXN.CustomActivity.REST",
+    //"partnerApiObjectTypeId": "IXN.CustomActivity.REST",
     "metaData": {
         "version": "2.0",
         "icon": "images/wallet-doodle.jpg",
@@ -15,7 +15,7 @@
     },
     "arguments": {
         "execute": {
-			"inArguments":[], // TODO: Email address?
+			"inArguments":[],
             "outArguments": [
             	{ "voucherCode":"text" }
 			],

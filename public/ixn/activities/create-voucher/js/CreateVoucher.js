@@ -48,7 +48,7 @@ define( function( require ) {
         
         for(var i = 0; i < passedInArgs.length; i++) {
             for(var key in passedInArgs[i]) {
-                existingArgs[key] = passedInArgs[i][key];
+                existingArgs[key] = passedInArgs[i][key] || defaultArgs[key] || '';
             }
         }
         

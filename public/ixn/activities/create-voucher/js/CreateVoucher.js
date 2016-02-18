@@ -68,8 +68,6 @@ define( function( require ) {
     }
     
     function save() {
-        alert('Save!');
-
         var amount = 0.99;// $('#voucher_amount').val();
         
         toJbPayload['arguments'].execute.inArguments.push({'amount': amount});

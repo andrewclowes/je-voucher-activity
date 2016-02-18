@@ -70,27 +70,10 @@ app.post('/login', tokenFromJWT, routes.login );
 app.post('/logout', routes.logout );
 
 // Custom Create Voucher Activity Routes
-app.post('/ixn/activities/create-voucher/save/', activity.save );
-app.post('/ixn/activities/create-voucher/validate/', activity.validate );
-app.post('/ixn/activities/create-voucher/publish/', activity.publish );
-app.post('/ixn/activities/create-voucher/execute/', activity.execute );
-
-app.get('/clearList', function( req, res ) {
-	// The client makes this request to get the data
-	activity.logExecuteData = [];
-	res.send( 200 );
-});
-
-
-// Used to populate events which have reached the activity in the interaction we created
-app.get('/getActivityData', function( req, res ) {
-	// The client makes this request to get the data
-	if( !activity.logExecuteData.length ) {
-		res.send( 200, {data: null} );
-	} else {
-		res.send( 200, {data: activity.logExecuteData} );
-	}
-});
+app.post('/ixn/activities/create-voucher/save', activity.save );
+app.post('/ixn/activities/create-voucher/validate', activity.validate );
+app.post('/ixn/activities/create-voucher/publish', activity.publish );
+app.post('/ixn/activities/create-voucher/execute', activity.execute );
 
 app.get( '/version', function( req, res ) {
 	res.setHeader( 'content-type', 'application/json' );

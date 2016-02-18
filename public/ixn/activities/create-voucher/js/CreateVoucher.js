@@ -47,7 +47,7 @@ define( function( require ) {
         var amount = passedInArgs['amount'] || defaultArgs['amount'];
         
         $('#voucher_amount').val(amount);
-        $('pre').text(JSON.stringify(payload, null, 4));
+        $('pre').text(JSON.stringify(passedInArgs, null, 4));
     }
     
     function onClickedSave() {

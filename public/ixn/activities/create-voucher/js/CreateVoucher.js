@@ -1,6 +1,6 @@
 define( function( require ) {
 	var Postmonger = require( 'postmonger' );
-	var $ = require( 'vendor/jquery.min' );
+	var $ = require('vendor/jquery.min');
 
     var connection = new Postmonger.Session();
 	var tokens;
@@ -26,7 +26,7 @@ define( function( require ) {
                 }
             }
             
-            amount = loadedArgs.amount || toJbPayload['configurationArguments'].defaults.priority;
+            amount = loadedArgs.amount || toJbPayload['configurationArguments'].defaults.amount;
             
             $('#voucher_amount').val(amount);
         }
@@ -75,6 +75,8 @@ define( function( require ) {
     
     // Fires when document has loaded
     function onRender() {
+        alert('Loaded!');
+        
         console.log('onRender event fired');
         
         connection.trigger('ready');
@@ -85,13 +87,13 @@ define( function( require ) {
             $('p.amount').text($('#voucher_amount').val());
         });
         
-        connection.trigger('updateButton', { button: 'save', text: 'save', visible: true });
+        connection.trigger('updateButton', { button: 'save', text: 'chickens', visible: true });
     }
     
     function save() {
         console.log('save event fired');
         
-        var amount = $('#voucher_amount').val();
+        var amount = 0.99;// $('#voucher_amount').val();
         
         toJbPayload['arguments'].execute.inArguments.push({'amount': amount});
         toJbPayload.metaData.isConfigured = true;

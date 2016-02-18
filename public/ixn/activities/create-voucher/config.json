@@ -1,8 +1,8 @@
 {
     "workflowApiVersion": "1.1",
     "metaData": {
-        "icon": "images/wallet-doodle.jpg",
-        "iconSmall": "images/wallet-doodle.jpg",
+        "icon": "images/payman.jpg",
+        "iconSmall": "images/payman.jpg",
         "category": "message"
     },
     "type": "REST",
@@ -16,7 +16,7 @@
         "execute": {
 			"inArguments":[],
             "outArguments": [ { "voucherCode": "" } ],
-			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute/",
+			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute",
             "verb": "POST",
             "body": "",
             "header": "",
@@ -29,21 +29,21 @@
     	"applicationExtensionKey": "je-voucher-create-activity",
         "defaults": { "amount": "10"},
         "save": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save",
             "body": "",
             "verb": "POST",
             "format": "json",
             "useJwt": false
         },
         "publish": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish/",
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish",
             "verb": "POST",
             "body": "",
             "format": "json",
             "useJwt": false
         },
         "validate": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate/",
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -52,9 +52,9 @@
     },
     "userInterfaces": {
         "configModal": {
-            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
+            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher",
             "height": 400,
-            "width": 500
+            "width": 600
         }
     },
     "schema": {

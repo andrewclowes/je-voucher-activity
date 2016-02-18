@@ -41,11 +41,13 @@ define( function( require ) {
             payload = data;
         }
         
-        payload.metaData = payload.metaData || {};
+        var passedInArgs = payload['arguments'].execute.inArguments;
+        var defaultArgs = payload['configurationArguments'].defaults;
         
-        $('pre').text(JSON.stringify(data, null, 4));
+        var amount = passedInArgs['amount'] || defaultArgs['amount'];
         
-        connection.trigger('updateButton', { 'button': 'next', 'enabled': true});
+        $('#voucher_amount').val(amount);
+        $('#payload').val(JSON.stringify(payload, null, 4));
     }
     
     function onClickedSave() {
@@ -63,16 +65,18 @@ define( function( require ) {
         $('#voucher_amount').on('change', function() {
             $('p.amount').text($('#voucher_amount').val());
         });
-        
-        connection.trigger('updateButton', { button: 'save', text: 'chickens', visible: true });
     }
     
     function save() {
-        var amount = 0.99;// $('#voucher_amount').val();
+        alert('Saving...');
+        var amount = $('#voucher_amount').val();
         
-        toJbPayload['arguments'].execute.inArguments.push({'amount': amount});
-        toJbPayload.metaData.isConfigured = true;
+        payload.name = "Moo";
+        payload['arguments'].execute.inArguments = [{ "amount": amount }];
+        payload['metaData'].isConfigured = true;
         
-        connection.trigger('updateActivity', toJbPayload);
+        connection.trigger('updateActivity', payload);
+        
+        alert('Saved.');
     }
 });

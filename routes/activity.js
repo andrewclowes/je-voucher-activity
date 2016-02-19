@@ -30,6 +30,16 @@ exports.execute = function( req, res ) {
     res.send(200, { "voucherCode": 1});
 };
 
+exports.save = function( req, res ) {
+    // Data from the req and put it in an array accessible to the main app.
+    //console.log( req.body );
+    console.log("================");
+    console.log('ROUTE = SAVE');
+    console.log("================");
+    activityUtils.logData( req );
+    res.send( 200, 'Save' );
+};
+
 /*
  * POST Handler for /publish/ route of Activity.
  */

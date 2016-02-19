@@ -5,19 +5,6 @@ var https         = require('https');
 var activityUtils = require('./activityUtils');
 
 /*
- * POST Handler for /save/ route of Activity.
- */
-exports.save = function( req, res ) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log("================");
-    console.log('ROUTE = SAVE');
-    console.log("================");
-    activityUtils.logData( req );
-    res.send( 200, 'Save' );
-};
-
-/*
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function( req, res ) {

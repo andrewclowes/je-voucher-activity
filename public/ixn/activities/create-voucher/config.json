@@ -14,7 +14,7 @@
     },
     "arguments": {
         "execute": {
-			"inArguments":[ { "emailAddress": "{{Contact.Default.Email}}" }],
+			"inArguments":[],
             "outArguments": [ { "voucherCode": "" } ],
 			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute",
             "verb": "POST",
@@ -28,13 +28,6 @@
     "configurationArguments": {
     	"applicationExtensionKey": "je-voucher-create-activity",
         "defaults": { "amount": "10"},
-        "save": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save",
-            "body": "",
-            "verb": "POST",
-            "format": "json",
-            "useJwt": false
-        },
         "publish": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish",
             "verb": "POST",
@@ -64,7 +57,6 @@
                     {
                         "voucherCode": {
                             "dataType": "Text",
-                            "isNullable": false,
                             "access": "Visible"
                         }
                     }

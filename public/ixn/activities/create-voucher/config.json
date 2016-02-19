@@ -30,8 +30,9 @@
         "defaults": { "amount": "10"},
         "save": {
           "url": "https://je-voucher-request.herokuapp.com/ixn/activities/create-voucher/save/",
-            "body": "",
             "verb": "POST",
+            "body": "",
+            "format": "json",
             "useJwt": false
         },
         "publish": {

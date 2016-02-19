@@ -1,7 +1,6 @@
 {
-    "workflowApiVersion": "1.0",
+    "workflowApiVersion": "1.1",
     "metaData": {
-        "version": "2.0",
         "icon": "images/payman.jpg",
         "iconSmall": "images/payman.jpg",
         "category": "message"
@@ -16,44 +15,25 @@
     "arguments": {
         "execute": {
 			"inArguments":[],
-            "outArguments": [ { "voucherCode": "number" } ],
-			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute",
-            "verb": "POST",
-            "body": "",
-            "header": "",
-            "format": "json",
-            "useJwt": false,
-            "timeout": 10000
+            "outArguments": [],
+			"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute"
         }
     },
     "configurationArguments": {
     	"applicationExtensionKey": "je-voucher-create-activity",
         "defaults": { "amount": "10"},
-        "save": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
-        },
         "publish": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish"
         },
         "validate": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate"
         }
     },
-    "edit": {
-        "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher",
-        "height": 400,
-        "width": 600
+    "userInterfaces": {
+        "configModal": {
+            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher",
+            "height": 400,
+            "width": 600
+        }
     }
 }

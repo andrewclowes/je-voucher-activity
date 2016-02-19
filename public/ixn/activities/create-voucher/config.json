@@ -8,7 +8,7 @@
     "type": "REST",
     "lang": {
         "en-US": {
-            "name": "Create Voucher",
+            "name": "Request Voucher",
             "description": "Activity that requests vouchers from within a journey"
         }
     },

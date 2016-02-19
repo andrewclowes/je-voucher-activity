@@ -29,6 +29,13 @@
     "configurationArguments": {
     	"applicationExtensionKey": "je-voucher-create-activity",
         "defaults": { "amount": "10"},
+        "save": {
+        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save",
+            "verb": "POST",
+            "body": "",
+            "format": "json",
+            "useJwt": false
+        },
         "publish": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish",
             "verb": "POST",

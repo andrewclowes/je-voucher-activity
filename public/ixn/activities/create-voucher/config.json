@@ -1,7 +1,6 @@
 {
-    "workflowApiVersion": "1.0",
+    "workflowApiVersion": "1.1",
     "metaData": {
-        "version": "2.0",
         "icon": "images/payman.jpg",
         "iconSmall": "images/payman.jpg",
         "category": "message"
@@ -29,13 +28,6 @@
     "configurationArguments": {
     	"applicationExtensionKey": "je-voucher-create-activity",
         "defaults": { "amount": "10"},
-        "save": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
-        },
         "publish": {
         	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish",
             "verb": "POST",
@@ -51,9 +43,25 @@
             "useJwt": false
         }
     },
-    "edit": {
-        "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher",
-        "height": 400,
-        "width": 600
+    "userInterfaces": {
+        "configModal": {
+            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher",
+            "height": 400,
+            "width": 600
+        }
+    },
+    "schema": {
+        "arguments": {
+            "execute": {
+                "outArguments": [
+                    {
+                        "voucherCode": {
+                            "dataType": "Text",
+                            "access": "Visible"
+                        }
+                    }
+                ]
+            }
+        }
     }
 }

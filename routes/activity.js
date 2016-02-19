@@ -10,13 +10,14 @@ var activityUtils = require('./activityUtils');
 exports.execute = function( req, res ) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
-    console.log("================");
-    console.log('ROUTE = EXECUTE');
-    console.log("================");
+    console.log("============================");
+    console.log('ROUTE = EXECUTE!!!!!!!!!!!!!');
+    console.log("============================");
     activityUtils.logData( req );
 
     var aArgs = req.body.inArguments;
     var oArgs = {};
+    
     for (var i=0; i<aArgs.length; i++) {
       for (var key in aArgs[i]) {
         oArgs[key] = aArgs[i][key];
@@ -28,15 +29,15 @@ exports.execute = function( req, res ) {
     res.send( 200, {"voucherCode": voucherCode} );
 };
 
-exports.save = function( req, res ) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log("================");
-    console.log('ROUTE = SAVE');
-    console.log("================");
-    activityUtils.logData( req );
-    res.send( 200, 'Save' );
-};
+// exports.save = function( req, res ) {
+//     // Data from the req and put it in an array accessible to the main app.
+//     //console.log( req.body );
+//     console.log("================");
+//     console.log('ROUTE = SAVE');
+//     console.log("================");
+//     activityUtils.logData( req );
+//     res.send( 200, 'Save' );
+// };
 
 /*
  * POST Handler for /publish/ route of Activity.
@@ -47,8 +48,8 @@ exports.publish = function( req, res ) {
     console.log("================");
     console.log('ROUTE = PUBLISH');
     console.log("================");
-    activityUtils.logData( req );
-    res.send( 200, 'Publish' );
+    //activityUtils.logData( req );
+    res.send( 200 );
 };
 
 /*
@@ -60,6 +61,6 @@ exports.validate = function( req, res ) {
     console.log("================");
     console.log('ROUTE = VALIDATE');
     console.log("================");
-    activityUtils.logData( req );
-    res.send( 200, 'Validate' );
+    //activityUtils.logData( req );
+    res.send( 200 );
 };

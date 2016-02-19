@@ -70,7 +70,6 @@ app.post('/login', tokenFromJWT, routes.login );
 app.post('/logout', routes.logout );
 
 // Custom Create Voucher Activity Routes
-//app.post('/ixn/activities/create-voucher/save', activity.save );
 app.post('/ixn/activities/create-voucher/validate', activity.validate );
 app.post('/ixn/activities/create-voucher/publish', activity.publish );
 app.post('/ixn/activities/create-voucher/execute', activity.execute );

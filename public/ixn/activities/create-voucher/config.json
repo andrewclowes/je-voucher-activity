@@ -14,7 +14,7 @@
     },
     "arguments": {
         "execute": {
-			      "inArguments":[],
+			      "inArguments":[ { "customerId": "{{Contact.Default.Customer_Key}}" } ],
             "outArguments": [ { "voucherCode": "" } ],
 			      "url": "https://je-voucher-request.herokuapp.com/ixn/activities/create-voucher/execute",
             "verb": "POST",

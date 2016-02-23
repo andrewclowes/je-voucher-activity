@@ -25,7 +25,9 @@ exports.execute = function( req, res ) {
     }
 
     var voucherCode = "TEST_CODE_" + oArgs.amount;
-
+    
+    console.log('Voucher Code = ' + voucherCode);
+    
     res.send( 200, {"voucherCode": voucherCode} );
 };
 

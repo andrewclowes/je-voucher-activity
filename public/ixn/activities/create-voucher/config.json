@@ -15,7 +15,7 @@
     "arguments": {
         "execute": {
             "inArguments": [],
-            "outArguments": [ { "voucherCode": "" } ],
+            "outArguments": [],
             "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute",
             "verb": "POST",
             "body": "",
@@ -50,25 +50,16 @@
             "useJwt": false
         }
     },
+    "wizardSteps": [
+        { "label": "Choose Data Extension", "key": "step1" },
+        { "label": "Configure Voucher", "key": "step2" },
+        { "label": "Confirm", "key": "step3", "active": false }  
+    ],
     "userInterfaces": {
         "configModal": {
             "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
             "height": 400,
             "width": 600
-        }
-    },
-    "schema": {
-        "arguments": {
-            "execute": {
-                "outArguments": [
-                    {
-                        "voucherCode": {
-                            "dataType": "Text",
-                            "access": "Visible"
-                        }
-                    }
-                ]
-            }
         }
     }
 }

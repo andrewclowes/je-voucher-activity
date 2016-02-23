@@ -3,6 +3,10 @@ body {
     padding: 0px;
 }
 
-#container {
-    margin: 30px;
+.step {
+    display: none;
+}
+
+#step1 {
+    display: block;
 }

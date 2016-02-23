@@ -53,7 +53,7 @@
     "wizardSteps": [
         { "label": "Choose Data Extension", "key": "step1" },
         { "label": "Configure Voucher", "key": "step2" },
-        { "label": "Confirm", "key": "step3", "active": false }  
+        { "label": "Confirm", "key": "step3" }  
     ],
     "userInterfaces": {
         "configModal": {

@@ -1,68 +1,67 @@
 'use strict';
 
-var config        = require('konfig')();
 var https         = require('https');
 var activityUtils = require('./activityUtils');
+var fuel          = require('fuel');
 
-/*
- * POST Handler for /execute/ route of Activity.
- */
-exports.execute = function( req, res ) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log("============================");
-    console.log('ROUTE = EXECUTE!!!!!!!!!!!!!');
-    console.log("============================");
-    activityUtils.logData( req );
+var Activity = function (config) {
+  var fuelClient = fuel.configure({
+    authUrl: config.authUrl,
+    clientId: config.clientId,
+    clientSecret: config.clientSecret
+  });
 
-    var aArgs = req.body.inArguments;
-    var oArgs = {};
+  return {
+    execute: function( req, res ) {
+        console.log("============================");
+        console.log('ROUTE = EXECUTE');
+        console.log("============================");
+        activityUtils.logData( req );
 
-    for (var i=0; i<aArgs.length; i++) {
-      for (var key in aArgs[i]) {
-        oArgs[key] = aArgs[i][key];
-      }
+        var aArgs = req.body.inArguments;
+        var oArgs = {};
+
+        for (var i=0; i<aArgs.length; i++) {
+        for (var key in aArgs[i]) {
+            oArgs[key] = aArgs[i][key];
+          }
+        }
+
+        // TODO: Implment request to Voucher API
+        var voucherCode = "TEST_CODE_" + oArgs.amount;
+
+        // fuelClient({
+        //   ""
+        // }, function (error, request, body) {
+        //   console.log(error);
+        //   console.log(request);
+        //   console.log(body);
+        // });
+
+        res.send( 200 );
+    },
+    save: function( req, res ) {
+        console.log("================");
+        console.log('ROUTE = SAVE');
+        console.log("================");
+        activityUtils.logData( req );
+        res.send( 200, 'Save' );
+    },
+    publish: function( req, res ) {
+        console.log("================");
+        console.log('ROUTE = PUBLISH');
+        console.log("================");
+        activityUtils.logData( req );
+        res.send( 200 );
+    },
+    validate: function( req, res ) {
+        console.log("================");
+        console.log('ROUTE = VALIDATE');
+        console.log("================");
+        activityUtils.logData( req );
+        res.send( 200 );
     }
-
-    var voucherCode = "TEST_CODE_" + oArgs.amount;
-    
-    console.log('Voucher Code = ' + voucherCode);
-    
-    res.send( 200, {"voucherCode": voucherCode} );
+  };
 };
 
-exports.save = function( req, res ) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log("================");
-    console.log('ROUTE = SAVE');
-    console.log("================");
-    activityUtils.logData( req );
-    res.send( 200, 'Save' );
-};
-
-/*
- * POST Handler for /publish/ route of Activity.
- */
-exports.publish = function( req, res ) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log("================");
-    console.log('ROUTE = PUBLISH');
-    console.log("================");
-    //activityUtils.logData( req );
-    res.send( 200 );
-};
-
-/*
- * POST Handler for /validate/ route of Activity.
- */
-exports.validate = function( req, res ) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    console.log("================");
-    console.log('ROUTE = VALIDATE');
-    console.log("================");
-    //activityUtils.logData( req );
-    res.send( 200 );
-};
+module.exports = Activity;

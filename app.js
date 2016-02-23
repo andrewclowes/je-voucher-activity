@@ -1,7 +1,7 @@
 'use strict';
 // Module Dependencies
 // -------------------
-var konfig        = require('konfig')();
+var config        = require('konfig')().app;
 var express       = require('express');
 var http          = require('http');
 var JWT           = require('./lib/jwtDecoder');
@@ -12,10 +12,8 @@ var activity      = require('./routes/activity');
 var pkgjson       = require('./package.json');
 
 var app = express();
-var config = konfig.app;
+var act = activity(config);
 
-// Register configs for the environments where the app functions
-// , these can be stored in a separate file using a module like config
 var APIKeys = {
     appId           : config.appId,
     clientId        : config.clientId,
@@ -41,7 +39,7 @@ function tokenFromJWT( req, res, next ) {
     next();
 }
 
-// Use the cookie-based session  middleware
+// Use the cookie-based session middleware
 app.use(express.cookieParser());
 
 // TODO: MaxAge for cookie based on token exp?
@@ -70,10 +68,10 @@ app.post('/login', tokenFromJWT, routes.login );
 app.post('/logout', routes.logout );
 
 // Custom Create Voucher Activity Routes
-app.post('/ixn/activities/create-voucher/save', activity.save);
-app.post('/ixn/activities/create-voucher/validate', activity.validate );
-app.post('/ixn/activities/create-voucher/publish', activity.publish );
-app.post('/ixn/activities/create-voucher/execute', activity.execute );
+app.post('/ixn/activities/create-voucher/save', act.save);
+app.post('/ixn/activities/create-voucher/validate', act.validate );
+app.post('/ixn/activities/create-voucher/publish', act.publish );
+app.post('/ixn/activities/create-voucher/execute', act.execute );
 
 app.get( '/version', function( req, res ) {
 	res.setHeader( 'content-type', 'application/json' );

@@ -48,7 +48,7 @@ define( function( require ) {
     }
     
     function onClickedNext() {
-        if((currentStep.key === 'step2' && steps[2].active === false) || currentStep.key == 'step3') {
+        if(currentStep.key === 'step3') {
             save();
         } else {
             connection.trigger('nextStep');

@@ -16,6 +16,7 @@ define( function( require ) {
     connection.on('initActivity', onInitActivity);
     connection.on('clickedNext', onClickedNext);
     connection.on('clickedBack', onClickedBack);
+    connection.on('gotoStep', onGotoStep);
 
     function onDocumentReady() {
         connection.trigger('ready');
@@ -56,6 +57,22 @@ define( function( require ) {
     
     function onClickedBack() {
         connection.trigger('prevStep');
+    }
+    
+    function onGotoStep(step) {
+        showStep(step);
+        connection.trigger('ready');
+    }
+    
+    function showStep(step, stepIndex) {
+        if(stepIndex && !step) {
+            step = steps[stepIndex-1];
+        }
+        
+        currentStep = step;
+        
+        $('.step').hide();
+        $('#' + currentStep.key).show();
     }
     
     function save() {

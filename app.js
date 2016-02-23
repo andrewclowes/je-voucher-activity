@@ -1,7 +1,7 @@
 'use strict';
 // Module Dependencies
 // -------------------
-var config        = require('konfig')().app;
+var config        = require('config');
 var express       = require('express');
 var http          = require('http');
 var JWT           = require('./lib/jwtDecoder');
@@ -12,7 +12,7 @@ var activity      = require('./routes/activity');
 var pkgjson       = require('./package.json');
 
 var app = express();
-var act = activity(config);
+var act = activity();
 
 var APIKeys = {
     appId           : config.appId,

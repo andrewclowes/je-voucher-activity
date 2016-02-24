@@ -6,13 +6,14 @@ define( function( require ) {
     var payload = {};
     var steps = [
         { "label": "Choose Data Extension", "key": "step1" },
-        { "label": "Configure Voucher", "key": "step2" },
+        { "label": "Configure Voucher", "key": "step2", "active": false },
         { "label": "Confirm", "key": "step3", "active": false }    
     ];
     var currentStep = steps[0].key;
 
     $(window).ready(onDocumentReady);
 
+    // Postmonger events from SFMC
     connection.on('initActivity', onInitActivity);
     connection.on('clickedNext', onClickedNext);
     connection.on('clickedBack', onClickedBack);
@@ -25,6 +26,7 @@ define( function( require ) {
     }
     
     function setupUI() {
+        // Voucher type
         $('input[name=voucher_type]').on('change', function() {
             voucherTypeChanged();
         });
@@ -32,7 +34,7 @@ define( function( require ) {
         $('input[name=voucher_type]').trigger('change');
     }
     
-    function voucherTypeChanged(voucherType) {
+    function voucherTypeChanged() {
         var voucherType = $('input[name=voucher_type]:checked').val();
         
         $('div.voucher-type').hide();

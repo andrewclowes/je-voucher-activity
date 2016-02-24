@@ -1,23 +1,26 @@
-requirejs.config({
+require.config({
     paths: {
-        vendor: '../vendor',
-		postmonger: 'vendor/postmonger'
+        'vendor': '../vendor',
+        'postmonger': 'vendor/postmonger',
+        'bootstrap': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min',
+        'fuelux': '//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min',
+        'jquery': '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery'
     },
     shim: {
-        'vendor/jquery.min': {
-            exports: '$'
+        'bootstrap': {
+            deps: ['jquery']
         },
 		'CreateVoucher': {
-			deps: ['vendor/jquery.min', 'vendor/postmonger']
+			deps: ['jquery', 'vendor/postmonger']
 		}
     }
 });
 
-requirejs( ['vendor/jquery.min', 'CreateVoucher'], function( $, CreateVoucher ) {
-    // Do something with jQuery.... 
-});
+// requirejs( ['vendor/jquery.min', 'CreateVoucher'], function( $, CreateVoucher ) {
+//     // Do something with jQuery.... 
+// });
 
-requirejs.onError = function( err ) {
+require.onError = function( err ) {
 	//console.log( "REQUIRE ERROR: ", err );
 	if( err.requireType === 'timeout' ) {
 		console.log( 'modules: ' + err.requireModules );
@@ -25,3 +28,5 @@ requirejs.onError = function( err ) {
 
 	throw err;
 };
+
+require(['jquery', 'bootstrap', 'fuelux', 'CreateVoucher'], function($){});

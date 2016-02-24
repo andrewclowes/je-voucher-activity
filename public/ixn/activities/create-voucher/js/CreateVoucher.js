@@ -1,6 +1,6 @@
 define( function( require ) {
 	var Postmonger = require( 'postmonger' );
-	var $ = require('vendor/jquery.min');
+	var $ = require('jquery');
 
     var connection = new Postmonger.Session();
     var payload = {};

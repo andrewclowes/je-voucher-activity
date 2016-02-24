@@ -59,7 +59,7 @@
         "configModal": {
             "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
             "height": 400,
-            "width": 600
+            "width": 800
         }
     }
 }

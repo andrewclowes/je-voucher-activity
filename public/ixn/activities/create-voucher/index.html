@@ -23,7 +23,7 @@
         </div>
     </div>
     <div id="step2" class="step">
-        <h4>Type</h4>
+        <h5><b>Type</b></h5>
         <form class="form-inline">
             <div class="form-group">
                 <select class="form-control" id="voucher_type">
@@ -43,7 +43,7 @@
         
         <br />
         
-        <h4>Platform</h4>
+        <h5><b>Platform</b></h5>
         <div class="checkbox">
             <label class="checkbox-custom" data-initialize="checkbox">
                 <input class="sr-only" type="checkbox" value="mobile">
@@ -60,17 +60,18 @@
         
         <br />
         
-        <h4>Valid For (days)</h4>
+        <h5><b>Valid For (days)</b></h5>
         <form class="form-inline">
             <div class="form-group">
                 <input type="text" id="voucher_valid_days" class="form-control" />
             </div>
         </form>
         
-        <h4>Minimum Spend</h4>
+        <h5><b>Min Spend</b></h5>
         <form class="form-inline">
-            <div class="form-group">
-                <input type="text" id="voucher_minimum_spend" class="form-control" />
+            <div class="input-group">
+                <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
+                <input type="text" class="form-control" id="voucher_fixed_amount" />
             </div>
         </form>
     </div>

@@ -23,6 +23,7 @@ define( function( require ) {
         setupUI();
         
         connection.trigger('ready');
+        connection.trigger('updateButton', { button: 'next', enabled: false });
     }
     
     function setupUI() {

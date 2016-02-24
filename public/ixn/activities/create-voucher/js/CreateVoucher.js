@@ -25,15 +25,15 @@ define( function( require ) {
     }
     
     function setupUI() {
-        $('#voucher_type').on('change', function() {
+        $('input[name=voucher_type]').on('change', function() {
             voucherTypeChanged();
         });
         
-        $('#voucher_type').trigger('change');
+        $('input[name=voucher_type]').trigger('change');
     }
     
     function voucherTypeChanged(voucherType) {
-        var voucherType = $('#voucher_type').val();
+        var voucherType = $('input[name=voucher_type]:checked').val();
         
         $('div.voucher-type').hide();
         

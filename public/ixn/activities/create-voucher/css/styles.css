@@ -7,6 +7,10 @@ body {
     display: none;
 }
 
-#step2 {
+#step1 {
     display: block;
+}
+
+.voucher-type-chooser {
+    margin-bottom: 10px;
 }

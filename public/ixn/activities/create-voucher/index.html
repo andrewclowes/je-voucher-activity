@@ -18,19 +18,27 @@
             <input type="text" id="de_name" class="form-control" placeholder="Enter the key of the data extension you are using for this interaction" />
         </div>        
         <div class="form-group">
-            <label>Data Extension Column</label>
-            <input type="text" id="de_column" class="form-control" placeholder="Enter the name of the column that you want the voucher code to be added to" />
+            <label>Primary Key Column</label>
+            <input type="text" id="de_pkcolumn" class="form-control" placeholder="Name of the primary key column in the data extension" />
+        </div>
+        <div class="form-group">
+            <label>Voucher Column</label>
+            <input type="text" id="de_vouchercolumn" class="form-control" placeholder="Name of the column in the data extension that you want the voucher code to be added to" />
         </div>
     </div>
     <div id="step2" class="step">
-        <h5><b>Type</b></h5>
+        <h5><b>Type</b> <small>Choose whether or not this voucher is a fixed amount or percentage</small></h5>
+        
+        <div class="voucher-type-chooser">
+            <label class="radio-custom radio-inline" data-initialize="radio">
+                <input class="sr-only" name="voucher_type" type="radio" value="1" checked="checked"> Fixed Amount
+            </label>
+            <label class="radio-custom radio-inline" data-initialize="radio">
+                <input class="sr-only" name="voucher_type" type="radio" value="2"> Percentage
+            </label>
+        </div>
+        
         <form class="form-inline">
-            <div class="form-group">
-                <select class="form-control" id="voucher_type">
-                    <option value="1">Fixed Amount</option>
-                    <option value="2">Percentage</option>
-                </select>
-            </div>
             <div class="input-group voucher-type" id="voucher_type_fixed">
                 <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
                 <input type="text" class="form-control" id="voucher_fixed_amount" />
@@ -43,7 +51,7 @@
         
         <br />
         
-        <h5><b>Platform</b></h5>
+        <h5><b>Platform</b> <small>Optional - if no platforms are selected, the voucher will be valid across all of them</h5>
         <div class="checkbox">
             <label class="checkbox-custom" data-initialize="checkbox">
                 <input class="sr-only" type="checkbox" value="mobile">
@@ -60,14 +68,14 @@
         
         <br />
         
-        <h5><b>Valid For (days)</b></h5>
+        <h5><b>Valid For (days)</b> <small>The number of days that this voucher will be valid for when it is created</small></h5>
         <form class="form-inline">
             <div class="form-group">
                 <input type="text" id="voucher_valid_days" class="form-control" />
             </div>
         </form>
         
-        <h5><b>Min Spend</b></h5>
+        <h5><b>Minimum Spend</b> <small>Optional</small></h5>
         <form class="form-inline">
             <div class="input-group">
                 <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>

@@ -142,7 +142,7 @@ define( function( require ) {
         payload['arguments'].execute.inArguments.push({ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount });
         payload['arguments'].execute.inArguments.push({'voucher': voucherPayload});
         
-        payload.name = '£' + amount + ' voucher';
+        payload.name = (voucherType == 1 ? '£' + voucherAmount : voucherAmount + '%') + ' voucher';
         //payload['arguments'].execute.inArguments = [{ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount }];
         
         payload['metaData'].isConfigured = true;

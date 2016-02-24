@@ -1,5 +1,4 @@
 'use strict';
-
 var https         = require('https');
 var activityUtils = require('./activityUtils');
 var config        = require('config');
@@ -27,16 +26,13 @@ var Activity = function () {
         // TODO: Implment request to Voucher API
         var voucherCode = "TEST_CODE_" + oArgs.amount;
 
-        var primaryKey = "1";
+        var primaryKeyValue = oArgs.emailAddress;
+        var dataExtensionKey = oArgs.dataExtensionKey;
+        var primaryKeyField = oArgs.dataExtensionPrimaryKey;
+        var voucherCodeField = oArgs.dataExtensionVoucherField;
 
-        var dataExtensionKey = "voucher_codes_test";
-        var primaryKeyField = "customer_key";
-        var voucherCodeField = "voucher_code";
-
-        var keys = {};
-        keys[primaryKeyField] = primaryKey;
-
-        var values = {};
+        var keys = {}, values = {};
+        keys[primaryKeyField] = primaryKeyValue;
         values[voucherCodeField] = voucherCode;
 
         var options = {
@@ -49,6 +45,8 @@ var Activity = function () {
         row.post(function (error, request, body) {
            if (error) {
              res.send( 500, error );
+           } else if (body.errorcode) {
+             res.send( 500, body );
            } else {
              res.send( 200, body );
            }

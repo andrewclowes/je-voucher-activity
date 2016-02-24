@@ -19,7 +19,29 @@ define( function( require ) {
     connection.on('gotoStep', onGotoStep);
 
     function onDocumentReady() {
+        setupUI();
+        
         connection.trigger('ready');
+    }
+    
+    function setupUI() {
+        $('#voucher_type').on('change', function() {
+            voucherTypeChanged();
+        });
+        
+        $('#voucher_type').trigger('change');
+    }
+    
+    function voucherTypeChanged(voucherType) {
+        var voucherType = $('#voucher_type').val();
+        
+        $('div.voucher-type').hide();
+        
+        if(voucherType == 1) {
+            $('#voucher_type_fixed').show();
+        } else {
+            $('#voucher_type_percent').show();
+        }
     }
     
     function onInitActivity(data) {

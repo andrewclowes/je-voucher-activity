@@ -23,18 +23,56 @@
         </div>
     </div>
     <div id="step2" class="step">
-        <div>
-            <label><b>Type:</b> <select><option value="1">&#163; Amount</option><option value="2">&#37; Amount</option></select></label>
+        <h4>Type</h4>
+        <form class="form-inline">
+            <div class="form-group">
+                <select class="form-control" id="voucher_type">
+                    <option value="1">Fixed Amount</option>
+                    <option value="2">Percentage</option>
+                </select>
+            </div>
+            <div class="input-group voucher-type" id="voucher_type_fixed">
+                <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
+                <input type="text" class="form-control" id="voucher_fixed_amount" />
+            </div>
+            <div class="input-group voucher-type" id="voucher_type_percent">
+                <input type="text" class="form-control" id="voucher_percent_amount" />
+                <span class="input-group-addon" id="voucher_percent_amount">&#37;</span>
+            </div>
+        </form>
+        
+        <br />
+        
+        <h4>Platform</h4>
+        <div class="checkbox">
+            <label class="checkbox-custom" data-initialize="checkbox">
+                <input class="sr-only" type="checkbox" value="mobile">
+                <span class="checkbox-label">Mobile</span>
+            </label>
         </div>
-        <div>
-            <label><b>Amount:</b> <input type="text" id="voucher_amount" /></label>
+        
+        <div class="checkbox">
+            <label class="checkbox-custom" data-initialize="checkbox">
+                <input class="sr-only" type="checkbox" value="web">
+                <span class="checkbox-label">Web</span>
+            </label>
         </div>
-        <div>
-            <label><b>Platform:</b> <input type="text" id="voucher_platform" /></label>
-        </div>
-        <div>
-            <label><b>Valid For (days):</b> <input type="number" id="voucher_validfordays" /></label>
-        </div>
+        
+        <br />
+        
+        <h4>Valid For (days)</h4>
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" id="voucher_valid_days" class="form-control" />
+            </div>
+        </form>
+        
+        <h4>Minimum Spend</h4>
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" id="voucher_minimum_spend" class="form-control" />
+            </div>
+        </form>
     </div>
     <div id="step3" class="step">
         <dl>

@@ -21,12 +21,16 @@ define( function( require ) {
 
     function onDocumentReady() {
         setupUI();
-
+        
         connection.trigger('ready');
-        //connection.trigger('updateButton', { button: 'next', enabled: false });
     }
-
+    
     function setupUI() {
+        // DataExtension
+        $('input[data-type="de"]').on('change', function() {
+            connection.trigger('updateButton', { button: 'next', enabled: isStepOneValid() });
+        });
+        
         // Voucher type
         $('input[name=voucher_type]').on('change', function() {
             voucherTypeChanged();
@@ -46,7 +50,30 @@ define( function( require ) {
             $('#voucher_type_percent').show();
         }
     }
-
+    
+    function isValid(value) {
+        return $.trim(value);
+    }
+    
+    function isStepOneValid() {
+        var dataExtensionKey = getDataExtensionKey();
+        var dataExtensionPrimaryKeyField = getDataExtensionPrimaryKeyField(); 
+        var dataExtensionVoucherField = getDataExtensionVoucherField();
+        
+        return isValid(dataExtensionKey) && isValid(dataExtensionPrimaryKeyField) && isValid(dataExtensionVoucherField);
+    }
+    
+    function getDataExtensionKey() {
+        return $('#de_key').val().trim();
+    }
+    
+    function getDataExtensionPrimaryKeyField() {
+        return $('#de_pkfield').val().trim();   
+    }
+    
+    function getDataExtensionVoucherField() {
+        return $('#de_voucherfield').val().trim();   
+    }
     function getVoucherType() {
         return $('input[name=voucher_type]:checked').val();
     }
@@ -78,19 +105,20 @@ define( function( require ) {
                     existingArgs[key] = passedInArgs[i][key];
                 }
             }
-
+            
             var dataExtensionKey = existingArgs.dataExtensionKey;
             var dataExtensionPrimaryKey = existingArgs.dataExtensionPrimaryKey;
             var dataExtensionVoucherField = existingArgs.dataExtensionVoucherField;
-            var amount = existingArgs.amount || defaultArgs['amount'];
-
+            
             $('#de_key').val(dataExtensionKey);
             $('#de_pkfield').val(dataExtensionPrimaryKey);
             $('#de_voucherfield').val(dataExtensionVoucherField);
-            $('#voucher_amount').val(amount);
         }
+        
+        // Update button depending on whether or not next is enabled
+        connection.trigger('updateButton', { button: 'next', enabled: isStepOneValid() });
     }
-
+    
     function onClickedNext() {
         if(currentStep.key === 'step3') {
             save();
@@ -121,9 +149,9 @@ define( function( require ) {
 
     function save() {
         // Data Extension
-        var dataExtensionKey = $('#de_key').val();
-        var dataExtensionPrimaryKeyField = $('#de_pkfield').val();
-        var dataExtensionVoucherField = $('#de_voucherfield').val();
+        var dataExtensionKey = getDataExtensionKey();
+        var dataExtensionPrimaryKeyField = getDataExtensionPrimaryKeyField(); 
+        var dataExtensionVoucherField = getDataExtensionVoucherField(); 
 
         // Voucher attributes
         var voucherType = getVoucherType();

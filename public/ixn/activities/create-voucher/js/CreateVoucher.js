@@ -36,7 +36,7 @@ define( function( require ) {
     }
     
     function voucherTypeChanged() {
-        var voucherType = $('input[name=voucher_type]:checked').val();
+        var voucherType = getVoucherType();
         
         $('div.voucher-type').hide();
         
@@ -45,6 +45,23 @@ define( function( require ) {
         } else {
             $('#voucher_type_percent').show();
         }
+    }
+    
+    function getVoucherType() {
+        return $('input[name=voucher_type]:checked').val();
+    }
+    function getVoucherAmount() {
+        if(getVoucherType() == 1) {
+            return $('#voucher_fixed_amount').val();
+        }
+        
+        return $('#voucher_percent_amount').val();
+    }
+    function getVoucherValidForDays() {
+        return $('#voucher_valid_days').val();
+    }
+    function getVoucherMinimumSpend() {
+        return $('#voucher_minimum_spend').val();
     }
     
     function onInitActivity(data) {
@@ -109,9 +126,21 @@ define( function( require ) {
         var dataExtensionVoucherField = $('#de_voucherfield').val();
         
         // Voucher attributes
-        var amount = $('#voucher_amount').val();
+        var voucherType = getVoucherType();
+        var voucherAmount = getVoucherAmount();
+        var voucherValidForDays = getVoucherValidForDays();
+        var voucherMinimumSpend = getVoucherMinimumSpend();
+        
+        var voucherPayload = {
+            'type': voucherType,
+            'amount': voucherAmount,
+            'platforms': 'mobile|web',
+            'validForDays': voucherValidForDays,
+            'minimumSpend': voucherMinimumSpend
+        }
         
         payload['arguments'].execute.inArguments.push({ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount });
+        payload['arguments'].execute.inArguments.push({'voucher': voucherPayload});
         
         payload.name = '£' + amount + ' voucher';
         //payload['arguments'].execute.inArguments = [{ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount }];

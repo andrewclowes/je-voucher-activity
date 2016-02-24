@@ -62,12 +62,14 @@ define( function( require ) {
                 }
             }
             
-            var dataExtensionName = existingArgs.dataExtensionName;
-            var dataExtensionColumn = existingArgs.dataExtensionColumn;
+            var dataExtensionKey = existingArgs.dataExtensionKey;
+            var dataExtensionPrimaryKey = existingArgs.dataExtensionPrimaryKey;
+            var dataExtensionVoucherField = existingArgs.dataExtensionVoucherField;
             var amount = existingArgs.amount || defaultArgs['amount'];
             
-            $('#de_name').val(dataExtensionName);
-            $('#de_column').val(dataExtensionColumn);
+            $('#de_key').val(dataExtensionKey);
+            $('#de_pkfield').val(dataExtensionPrimaryKey);
+            $('#de_voucherfield').val(dataExtensionVoucherField);
             $('#voucher_amount').val(amount);
         }
     }
@@ -101,12 +103,19 @@ define( function( require ) {
     }
     
     function save() {
-        var dataExtensionName = $('#de_name').val();
-        var dataExtensionColumn = $('#de_column').val();
+        // Data Extension
+        var dataExtensionKey = $('#de_key').val();
+        var dataExtensionPrimaryKeyField = $('#de_pkfield').val();
+        var dataExtensionVoucherField = $('#de_voucherfield').val();
+        
+        // Voucher attributes
         var amount = $('#voucher_amount').val();
         
+        payload['arguments'].execute.inArguments.push({ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount });
+        
         payload.name = '£' + amount + ' voucher';
-        payload['arguments'].execute.inArguments = [{ "dataExtensionName": dataExtensionName, "dataExtensionColumn": dataExtensionColumn, "amount": amount }];
+        //payload['arguments'].execute.inArguments = [{ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount }];
+        
         payload['metaData'].isConfigured = true;
         
         connection.trigger('updateActivity', payload);

@@ -7,10 +7,14 @@ body {
     display: none;
 }
 
-#step1 {
+#step2 {
     display: block;
 }
 
 .voucher-config-block {
+    margin-bottom: 20px;
+}
+
+.voucher-config-block-sm {
     margin-bottom: 10px;
 }

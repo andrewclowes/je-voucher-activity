@@ -27,27 +27,29 @@
         </div>
     </div>
     <div id="step2" class="step">
-        <h5><b>Type</b> <small>Choose whether or not this voucher is a fixed amount or percentage</small></h5>
-        
         <div class="voucher-config-block">
-            <label class="radio-custom radio-inline" data-initialize="radio">
-                <input class="sr-only" name="voucher_type" type="radio" value="1" checked="checked"> Fixed Amount
-            </label>
-            <label class="radio-custom radio-inline" data-initialize="radio">
-                <input class="sr-only" name="voucher_type" type="radio" value="2"> Percentage
-            </label>
-        </div>
+            <h5><b>Type</b> <small>Choose whether or not this voucher is a fixed amount or percentage</small></h5>
+            
+            <div class="voucher-config-block-sm">
+                <label class="radio-custom radio-inline" data-initialize="radio">
+                    <input class="sr-only" name="voucher_type" type="radio" value="1" checked="checked"> Fixed Amount
+                </label>
+                <label class="radio-custom radio-inline" data-initialize="radio">
+                    <input class="sr-only" name="voucher_type" type="radio" value="2"> Percentage
+                </label>
+            </div>
         
-        <form class="form-inline">
-            <div class="input-group voucher-type" id="voucher_type_fixed">
-                <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
-                <input type="text" class="form-control" id="voucher_fixed_amount" />
-            </div>
-            <div class="input-group voucher-type" id="voucher_type_percent">
-                <input type="text" class="form-control" id="voucher_percent_amount" />
-                <span class="input-group-addon" id="voucher_percent_amount">&#37;</span>
-            </div>
-        </form>
+            <form class="form-inline">
+                <div class="input-group voucher-type" id="voucher_type_fixed">
+                    <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
+                    <input type="text" class="form-control" id="voucher_fixed_amount" />
+                </div>
+                <div class="input-group voucher-type" id="voucher_type_percent">
+                    <input type="text" class="form-control" id="voucher_percent_amount" />
+                    <span class="input-group-addon" id="voucher_percent_amount">&#37;</span>
+                </div>
+            </form>
+        </div>
         
         <div class="voucher-config-block">
             <h5><b>Platform</b> <small>Optional - if no platforms are selected, the voucher will be valid across all of them</h5>
@@ -66,20 +68,24 @@
             </div>
         </div>
         
-        <h5><b>Valid For (days)</b> <small>The number of days that this voucher will be valid for when it is created</small></h5>
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" id="voucher_valid_days" class="form-control" />
-            </div>
-        </form>
+        <div class="voucher-config-block">
+            <h5><b>Valid For (days)</b> <small>The number of days that this voucher will be valid for when it is created</small></h5>
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" id="voucher_valid_days" class="form-control" />
+                </div>
+            </form>
+        </div>
         
-        <h5><b>Minimum Spend</b> <small>Optional</small></h5>
-        <form class="form-inline">
-            <div class="input-group">
-                <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
-                <input type="text" class="form-control" id="voucher_fixed_amount" />
-            </div>
-        </form>
+        <div class="voucher-config-block">
+            <h5><b>Minimum Spend</b> <small>Optional</small></h5>
+            <form class="form-inline">
+                <div class="input-group">
+                    <span class="input-group-addon" id="voucher_fixed_amount">&#163;</span>
+                    <input type="text" class="form-control" id="voucher_fixed_amount" />
+                </div>
+            </form>
+        </div>
     </div>
     <div id="step3" class="step">
         <dl>

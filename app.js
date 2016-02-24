@@ -16,10 +16,10 @@ var act = activity();
 
 var APIKeys = {
     appId           : config.appId,
-    clientId        : config.clientId,
-    clientSecret    : config.clientSecret,
+    clientId        : config.auth.clientId,
+    clientSecret    : config.auth.clientSecret,
     appSignature    : config.appSignature,
-    authUrl         : config.authUrl
+    authUrl         : config.auth.authUrl
 };
 
 // Simple custom middleware

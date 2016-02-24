@@ -3,14 +3,10 @@
 var https         = require('https');
 var activityUtils = require('./activityUtils');
 var config        = require('config');
-var fuel          = require('fuel');
+var SfmcClient    = require('../lib/sfmc/sfmcClient');
 
 var Activity = function () {
-  var fuelClient = fuel.configure({
-      authUrl: config.authUrl,
-      clientId: config.clientId,
-      clientSecret: config.clientSecret
-    });
+  var sfmcClient = new SfmcClient(config);
 
   return {
     execute: function( req, res ) {
@@ -43,23 +39,15 @@ var Activity = function () {
         var values = {};
         values[voucherCodeField] = voucherCode;
 
-        var requestBody = [
-          {
-            "keys": keys,
-            "values": values
-          }
-        ];
+        var options = {
+          dataExtensionKey: dataExtensionKey,
+          keys: keys,
+          values: values
+        };
 
-        var dataExtensionUrl = config.sfmcBaseUrl + '/hub/v1/dataevents/key:' + dataExtensionKey + '/rowset/';
-        console.log(dataExtensionUrl);
-        console.log(requestBody);
-
-        fuelClient({
-          url: dataExtensionUrl,
-          body: requestBody,
-          method: 'POST'
-        }, function (error, request, body) {
-          console.log(body);
+        var row = sfmcClient.dataExtensionRow(options);
+        row.post(function (error, request, body) {
+           console.log(body);
         });
 
         res.send( 200 );

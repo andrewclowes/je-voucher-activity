@@ -24,7 +24,7 @@ var Activity = function () {
         }
 
         // TODO: Implment request to Voucher API
-        var voucherCode = "TEST_CODE_" + oArgs.amount;
+        var voucherCode = "TEST_CODE_" + oArgs.voucher.amount;
 
         var primaryKeyValue = oArgs.emailAddress;
         var dataExtensionKey = oArgs.dataExtensionKey;

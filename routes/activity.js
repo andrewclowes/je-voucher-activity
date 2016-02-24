@@ -47,10 +47,12 @@ var Activity = function () {
 
         var row = sfmcClient.dataExtensionRow(options);
         row.post(function (error, request, body) {
-           console.log(body);
+           if (error) {
+             res.send( 500, error );
+           } else {
+             res.send( 200, body );
+           }
         });
-
-        res.send( 200 );
     },
     save: function( req, res ) {
         console.log("================");

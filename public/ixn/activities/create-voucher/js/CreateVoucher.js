@@ -139,7 +139,7 @@ define( function( require ) {
             'minimumSpend': voucherMinimumSpend
         }
         
-        payload['arguments'].execute.inArguments.push({ "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField, "amount": amount });
+        payload['arguments'].execute.inArguments.push({ "amount": voucherAmount, "dataExtensionKey": dataExtensionKey, "dataExtensionPrimaryKey": dataExtensionPrimaryKeyField, "dataExtensionVoucherField": dataExtensionVoucherField });
         payload['arguments'].execute.inArguments.push({'voucher': voucherPayload});
         
         payload.name = (voucherType == 1 ? '£' + voucherAmount : voucherAmount + '%') + ' voucher';

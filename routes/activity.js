@@ -5,14 +5,14 @@ var config        = require('config');
 var SfmcClient    = require('../lib/sfmc/sfmcClient');
 
 var Activity = function () {
-var sfmcClient = new SfmcClient(config);
+  var sfmcClient = new SfmcClient(config);
 
   return {
     execute: function( req, res ) {
         console.log("================");
         console.log('ROUTE = EXECUTE');
         console.log("================");
-        //activityUtils.logData( req );
+        activityUtils.logData( req );
 
         var aArgs = req.body.inArguments;
         var oArgs = {};
@@ -44,14 +44,13 @@ var sfmcClient = new SfmcClient(config);
         var row = sfmcClient.dataExtensionRow(options);
         row.post(function (error, request, body) {
            if (error) {
-               console.log("ERROR...");
-               console.log(error);
-               
+             console.log("ERROR 500");
+             console.log(error);
              res.send( 500, error );
            } else if (body.errorcode) {
-               console.log("ERROR CODE...");
-               console.log(body);
-                res.send( 500, body );
+             console.log("ERROR " + body.errorcode);
+             console.log(body);
+             res.send( 500, body );
            } else {
              res.send( 200, body );
            }
@@ -61,22 +60,21 @@ var sfmcClient = new SfmcClient(config);
         console.log("================");
         console.log('ROUTE = SAVE');
         console.log("================");
-        //activityUtils.logData( req );
+        activityUtils.logData( req );
         res.send( 200, 'Save' );
     },
     publish: function( req, res ) {
         console.log("================");
         console.log('ROUTE = PUBLISH');
         console.log("================");
-        //activityUtils.logData( req );
-        
+        activityUtils.logData( req );       
         res.send( 200 );
     },
     validate: function( req, res ) {
         console.log("================");
         console.log('ROUTE = VALIDATE');
         console.log("================");
-        //activityUtils.logData( req );
+        activityUtils.logData( req );
         res.send( 200 );
     }
   };

@@ -129,8 +129,6 @@ define( function( require ) {
         if(data) {
             payload = data;
 
-            var defaultArgs = payload['configurationArguments'].defaults;
-
             var passedInArgs = payload['arguments'].execute.inArguments;
             var existingArgs = {};
 

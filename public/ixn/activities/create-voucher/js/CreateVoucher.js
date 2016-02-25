@@ -35,10 +35,10 @@ define( function( require ) {
         $('input[name=voucher_type]').on('change', function() {
             voucherTypeChanged();
         });
-
-        $('input[name=voucher_type]').trigger('change');
+        
+        voucherTypeChanged();
     }
-
+    
     function voucherTypeChanged() {
         var voucherType = getVoucherType();
 
@@ -51,8 +51,8 @@ define( function( require ) {
         }
     }
     
-    function isValid(value) {
-        return $.trim(value);
+    function isValidValue(value) {
+        return $.trim(value).length > 0;
     }
     
     function isStepOneValid() {
@@ -60,7 +60,7 @@ define( function( require ) {
         var dataExtensionPrimaryKeyField = getDataExtensionPrimaryKeyField(); 
         var dataExtensionVoucherField = getDataExtensionVoucherField();
         
-        return isValid(dataExtensionKey) && isValid(dataExtensionPrimaryKeyField) && isValid(dataExtensionVoucherField);
+        return isValidValue(dataExtensionKey) && isValidValue(dataExtensionPrimaryKeyField) && isValidValue(dataExtensionVoucherField);
     }
     
     function getDataExtensionKey() {

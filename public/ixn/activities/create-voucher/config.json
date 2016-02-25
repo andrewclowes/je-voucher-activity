@@ -5,6 +5,7 @@
         "iconSmall": "images/payman.jpg",
         "category": "message"
     },
+    "useSso": true,
     "type": "REST",
     "lang": {
         "en-US": {
@@ -21,7 +22,7 @@
             "body": "",
             "header": "",
             "format": "json",
-            "useJwt": false,
+            "useJwt": true,
             "timeout": 10000
         }
     },

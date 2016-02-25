@@ -1,12 +1,12 @@
 {
   "port": 3000,
   "tenant": "uk",
-  "appId": "421d561b-8ee9-416f-b799-9a5948acd36c",
-  "appSignature": "e5e3noodn4rsasfsvsvgjdusy00vo0vdcxn5zxel3vywkqfba51sekmriw5o2t0uwp3qyin15hgkdo4futrwmo5p3143kojug5gzcigs24c3fpxhgkhbyahdezvbnvdioirtjvj3pwevms4ezjmardxhf1t4ijd2evaup0izbjedeutf3qxl2vfktqpjfuuamle5eiwxklcltbqcyvek3eq3awuaqu3xqfcicjcnh5evqc4sb0iyjqftmn2da5q",
+  "appId": "5653cd75-bec8-4abb-8a53-793143a353ec",
+  "appSignature": "opxaermbdpvz4e5b0kb2ufkrnoawlofizzcrj2dabdadizwfz4eaj3lk1qe5k1lbjpm5mfox0qya2yvwrzfv50apqc5zddbzbreyjxmnlv0b4swwa4vvqwjjtyy3a3cu3c5umjjw2iivkkszxo35032ft1l3w12501lkqhekqhd2gun53quldscanexp1neihiatha3qowx3zi1nxlp2nmbgw4bztgerzgbohgc322bwy4dbwplts0tsjmlgoc3",
   "auth": {
     "authUrl": "https://auth.exacttargetapis.com/v1/requestToken?legacy=1",
-    "clientId": "9uut7ht9vlborqlf2c4ipihm",
-    "clientSecret": "xoXMIgiHEm8l2eu7JfO9kGDi"
+    "clientId": "yqzpxf98ecmnximkp6pl47tb",
+    "clientSecret": "2jlGlhc15xqXIuloNrh8GRxs"
   },
   "sfmcBaseUrl": "https://www.exacttargetapis.com",
   "voucherApiHost": "voucherapi.simples.je-labs.com"

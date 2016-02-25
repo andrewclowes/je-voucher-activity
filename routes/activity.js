@@ -4,10 +4,8 @@ var activityUtils = require('./activityUtils');
 var config        = require('config');
 var SfmcClient    = require('../lib/sfmc/sfmcClient');
 
-console.log('activity.js: ' + JSON.stringify(config));
-
 var Activity = function () {
-  var sfmcClient = new SfmcClient(config);
+var sfmcClient = new SfmcClient(config);
 
   return {
     execute: function( req, res ) {

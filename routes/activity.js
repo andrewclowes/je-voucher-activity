@@ -44,8 +44,12 @@ var Activity = function () {
         var row = sfmcClient.dataExtensionRow(options);
         row.post(function (error, request, body) {
            if (error) {
+               console.log("ERROR...");
+               console.log(error);
+               
              res.send( 500, error );
            } else if (body.errorcode) {
+               console.log("ERROR CODE...");
                console.log(body);
                 res.send( 500, body );
            } else {

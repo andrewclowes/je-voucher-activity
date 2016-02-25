@@ -72,7 +72,29 @@ var sfmcClient = new SfmcClient(config);
         console.log("================");
         console.log('ROUTE = PUBLISH');
         console.log("================");
-        activityUtils.logData( req );
+        //activityUtils.logData( req );
+        var options = {
+          dataExtensionKey: "767DD9CD-BC0F-44E6-99D9-989D982B8F5A",
+          keys: { 'Customer_Key': 'payman.labbaff@just-eat.com' },
+          values: { 'Customer_Voucher': 'mooooooooooooooooo' }
+        };
+
+        var row = sfmcClient.dataExtensionRow(options);
+        row.post(function (error, request, body) {
+           if (error) {
+               console.log("ERROR...");
+               console.log(error);
+               
+             res.send( 500, error );
+           } else if (body.errorcode) {
+               console.log("ERROR CODE...");
+               console.log(body);
+                res.send( 500, body );
+           } else {
+             res.send( 200, body );
+           }
+        });
+        
         res.send( 200 );
     },
     validate: function( req, res ) {

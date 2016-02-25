@@ -46,7 +46,8 @@ var Activity = function () {
            if (error) {
              res.send( 500, error );
            } else if (body.errorcode) {
-             res.send( 500, body );
+               console.log(body);
+                res.send( 500, body );
            } else {
              res.send( 200, body );
            }

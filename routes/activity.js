@@ -41,6 +41,10 @@ var Activity = function () {
           values: values
         };
 
+        console.log('Auth URL: ' + config.authUrl);
+        console.log('ClientID: ' + config.clientId);
+        console.log('Secret: ' + config.clientSecret);
+
         var row = sfmcClient.dataExtensionRow(options);
         row.post(function (error, request, body) {
            if (error) {

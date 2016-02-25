@@ -12,7 +12,7 @@ var sfmcClient = new SfmcClient(config);
         console.log("================");
         console.log('ROUTE = EXECUTE');
         console.log("================");
-        activityUtils.logData( req );
+        //activityUtils.logData( req );
 
         var aArgs = req.body.inArguments;
         var oArgs = {};
@@ -23,7 +23,7 @@ var sfmcClient = new SfmcClient(config);
           }
         }
 
-        // TODO: Implment request to Voucher API
+        // TODO: Implement request to Voucher API
         var voucherCode = "TEST_CODE_" + oArgs.voucher.amount;
 
         var primaryKeyValue = oArgs.emailAddress;
@@ -41,9 +41,9 @@ var sfmcClient = new SfmcClient(config);
           values: values
         };
 
-        console.log('Auth URL: ' + config.authUrl);
-        console.log('ClientID: ' + config.clientId);
-        console.log('Secret: ' + config.clientSecret);
+        console.log('Auth URL: ' + config.auth.authUrl);
+        console.log('ClientID: ' + config.auth.clientId);
+        console.log('Secret: ' + config.auth.clientSecret);
 
         var row = sfmcClient.dataExtensionRow(options);
         row.post(function (error, request, body) {

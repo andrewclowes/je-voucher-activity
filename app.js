@@ -62,11 +62,6 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// HubExchange Routes
-app.get('/', routes.index );
-app.post('/login', tokenFromJWT, routes.login );
-app.post('/logout', routes.logout );
-
 // Custom Create Voucher Activity Routes
 app.post('/ixn/activities/create-voucher/save', act.save);
 app.post('/ixn/activities/create-voucher/validate', act.validate );

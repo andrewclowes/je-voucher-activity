@@ -7,7 +7,7 @@ define( function( require ) {
     var steps = [
         { "label": "Choose Data Extension", "key": "step1" },
         { "label": "Configure Voucher", "key": "step2", "active": false },
-        { "label": "Confirm", "key": "step3", "active": false }
+        { "label": "Confirm", "key": "step3", "active": false }    
     ];
     var currentStep = steps[0].key;
 
@@ -26,17 +26,28 @@ define( function( require ) {
     }
     
     function setupUI() {
-        // DataExtension
+        /* Data Extension */
         $('input[data-type="de"]').on('change', function() {
-            connection.trigger('updateButton', { button: 'next', enabled: isStepOneValid() });
+            //connection.trigger('updateButton', { button: 'next', enabled: isStepOneValid() });
+            updateNextButton(isStepOneValid());
         });
         
-        // Voucher type
+        /* Voucher */
+        // Type
         $('input[name=voucher_type]').on('change', function() {
             voucherTypeChanged();
         });
         
+        // Attributes
+        $('input[data-type="voucher"]').on('change', function() {
+            updateNextButton(isStepTwoValid());
+        });
+        
         voucherTypeChanged();
+    }
+    
+    function updateNextButton(enabled) {
+        connection.trigger('updateButton', { button: 'next', enabled: enabled });
     }
     
     function voucherTypeChanged() {
@@ -62,15 +73,16 @@ define( function( require ) {
         
         return isValidValue(dataExtensionKey) && isValidValue(dataExtensionPrimaryKeyField) && isValidValue(dataExtensionVoucherField);
     }
+    function isStepTwoValid() {
+        return isVoucherAmountValid();
+    }
     
     function getDataExtensionKey() {
         return $('#de_key').val().trim();
     }
-    
     function getDataExtensionPrimaryKeyField() {
         return $('#de_pkfield').val().trim();   
     }
-    
     function getDataExtensionVoucherField() {
         return $('#de_voucherfield').val().trim();   
     }
@@ -90,7 +102,29 @@ define( function( require ) {
     function getVoucherMinimumSpend() {
         return $('#voucher_minimum_spend').val();
     }
+    function isFixedAmountVoucher() {
+        return getVoucherType() == 1;
+    }
+    function isFixedAmountValid() {
+        var fixedAmount = $('#voucher_fixed_amount').val();
+        var regex  = /^\d+(?:\.\d{0,2})$/;
+        
+        return regex.test(fixedAmount);
+    }
+    function isPercentAmountValid() {
+        var percentAmount = $('#voucher_percent_amount').val();
+        
+        if(isNaN(percentAmount))
+            return false;
+            
+        percentAmount = parseInt(percentAmount);            
 
+        return percentAmount > 0 && percentAmount < 100;
+    }
+    function isVoucherAmountValid() {
+        return isFixedAmountVoucher() ? isFixedAmountValid() : isPercentAmountValid();
+    }
+    
     function onInitActivity(data) {
         if(data) {
             payload = data;

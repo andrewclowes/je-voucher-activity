@@ -96,6 +96,13 @@ define( function( require ) {
 
         return $('#voucher_percent_amount').val();
     }
+    function getVoucherPlatforms() {
+        var selectedPlatforms = [];
+        
+        $('input[name="voucher_platform"]:checked').each(function() { selectedPlatforms.push($(this).val()) });
+        
+        return JSON.stringify(selectedPlatforms);
+    }
     function getVoucherValidForDays() {
         return $('#voucher_valid_days').val();
     }
@@ -188,13 +195,14 @@ define( function( require ) {
         // Voucher attributes
         var voucherType = getVoucherType();
         var voucherAmount = getVoucherAmount();
+        var voucherPlatforms = getVoucherPlatforms();
         var voucherValidForDays = getVoucherValidForDays();
         var voucherMinimumSpend = getVoucherMinimumSpend();
 
         var voucherPayload = {
             'type': voucherType,
             'amount': voucherAmount,
-            'platforms': 'mobile|web',
+            'platforms': voucherPlatforms,
             'validForDays': voucherValidForDays,
             'minimumSpend': voucherMinimumSpend
         }

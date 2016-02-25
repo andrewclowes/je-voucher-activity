@@ -41,10 +41,6 @@ var sfmcClient = new SfmcClient(config);
           values: values
         };
 
-        console.log('Auth URL: ' + config.auth.authUrl);
-        console.log('ClientID: ' + config.auth.clientId);
-        console.log('Secret: ' + config.auth.clientSecret);
-
         var row = sfmcClient.dataExtensionRow(options);
         row.post(function (error, request, body) {
            if (error) {
@@ -65,7 +61,7 @@ var sfmcClient = new SfmcClient(config);
         console.log("================");
         console.log('ROUTE = SAVE');
         console.log("================");
-        activityUtils.logData( req );
+        //activityUtils.logData( req );
         res.send( 200, 'Save' );
     },
     publish: function( req, res ) {
@@ -80,7 +76,7 @@ var sfmcClient = new SfmcClient(config);
         console.log("================");
         console.log('ROUTE = VALIDATE');
         console.log("================");
-        activityUtils.logData( req );
+        //activityUtils.logData( req );
         res.send( 200 );
     }
   };

@@ -1,5 +1,6 @@
 'use strict';
 var https         = require('https');
+var async         = require('async');
 var activityUtils = require('./activityUtils');
 var config        = require('config');
 var moment        = require('moment');
@@ -12,7 +13,7 @@ var Activity = function () {
   var sfmcClient = new SfmcClient(config);
   var voucherClient = new VoucherClient(config);
 
-  var voucherTypeEnum = {
+  var voucherTypes = {
     1: 'Absolute',
     2: 'Percentage'
   };
@@ -28,7 +29,18 @@ var Activity = function () {
       }
     }
 
-    requestVoucher(options, res, postVoucherToSfmc);
+    if (options.voucher == null) {
+      res.send(500, {Message: 'Voucher options are not present in the request'});
+    }
+
+    async.waterfall([function(callback) { callback(null, options); }, requestVoucher, postVoucherToSfmc],
+      function (error, result) {
+        if (error) {
+          res.send(500, error);
+        } else {
+          res.send(200, result);
+        }
+      });
   };
 
   activity.save = function(req, res) {
@@ -46,18 +58,14 @@ var Activity = function () {
     res.send(200, 'Validate');
   };
 
-  function requestVoucher(options, res, next) {
-    if (options.voucher == null) {
-      res.send(500, {Message: 'Voucher options are not present in the request'});
-    }
-
+  function requestVoucher(options, callback) {
     var startDate = moment.utc();
     var endDate = moment(startDate).add(options.voucher.validForDays, "days");
 
     var voucherOptions = {
       Name: "Implicit Voucher Group",
       Discount: {
-        VoucherType: voucherTypeEnum[options.voucher.type],
+        VoucherType: voucherTypes[options.voucher.type],
         Amount: options.voucher.amount
       },
       Validity: {
@@ -71,21 +79,21 @@ var Activity = function () {
     var vouchers = voucherClient.vouchers();
     vouchers.postVoucher(config.tenant, voucherOptions, function(error, response, body) {
       if (error) {
-        res.send(500, error);
+        callback(error);
       } else if (response.statusCode != 200) {
-        res.send(500, body);
+        callback(body);
       } else {
         var bodyObj = JSON.parse(body);
         if (bodyObj == null || bodyObj.Code == null) {
-          res.send(500, {Message: 'There was no code returned from the Voucher Api'});
+          callback({ Message: 'There was no code returned from the Voucher Api' });
         }
         options.voucher.voucherCode = bodyObj.Code;
-        next(options, res);
+        callback(null, options);
       }
     });
   }
 
-  function postVoucherToSfmc(options, res) {
+  function postVoucherToSfmc(options, callback) {
     var primaryKeyValue = options.emailAddress;
     var dataExtensionKey = options.dataExtensionKey;
     var primaryKeyField = options.dataExtensionPrimaryKey;
@@ -103,13 +111,13 @@ var Activity = function () {
 
     var row = sfmcClient.dataExtensionRow(sfmcOptions);
     row.post(function (error, request, body) {
-       if (error) {
-         res.send(500, error);
-       } else if (body.errorcode) {
-         res.send(500, body);
-       } else {
-         res.send(200, { voucherCode: options.voucher.voucherCode });
-       }
+      if (error) {
+        callback(error);
+      } else if (body.errorcode) {
+        callback(body);
+      } else {
+        callback(null, { voucherCode: options.voucher.voucherCode });
+      }
     });
   }
 

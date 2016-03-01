@@ -2,7 +2,7 @@ var util = require( 'util' );
 
 exports.logExecuteData = [];
 
-exports.logData = function ( req ) {
+exports.logData = function(req) {
     exports.logExecuteData.push({
         body: req.body,
         headers: req.headers,
@@ -40,5 +40,4 @@ exports.logData = function ( req ) {
 	console.log( "protocol: " + req.protocol );
 	console.log( "secure: " + req.secure );
 	console.log( "originalUrl: " + req.originalUrl );
-
 };

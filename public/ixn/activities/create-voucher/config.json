@@ -1,65 +1,88 @@
 {
-    "workflowApiVersion": "1.1",
-    "metaData": {
-        "icon": "images/payman.jpg",
-        "iconSmall": "images/payman.jpg",
-        "category": "message"
-    },
-    "type": "REST",
-    "lang": {
-        "en-US": {
-            "name": "Create Voucher",
-            "description": "Activity that requests a new vouchers to be created from within a journey"
-        }
-    },
-    "arguments": {
-        "execute": {
-            "inArguments": [ { "emailAddress": "{{Contact.Default.Email}}" } ],
-            "outArguments": [],
-            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute",
-            "verb": "POST",
-            "body": "",
-            "header": "",
-            "format": "json",
-            "useJwt": true,
-            "timeout": 10000
-        }
-    },
-    "configurationArguments": {
-    	"applicationExtensionKey": "je-voucher-request-activity",
-        "defaults": { "amount": "10" },
-        "save": {
-          "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
-        },
-        "publish": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish/",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
-        },
-        "validate": {
-        	"url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate/",
-            "verb": "POST",
-            "body": "",
-            "format": "json",
-            "useJwt": false
-        }
-    },
-    "wizardSteps": [
-        { "label": "Choose Data Extension", "key": "step1" },
-        { "label": "Configure Voucher", "key": "step2" },
-        { "label": "Confirm", "key": "step3" }
-    ],
-    "userInterfaces": {
-        "configModal": {
-            "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
-            "height": 400,
-            "width": 800
-        }
+  "workflowApiVersion": "1.1",
+  "metaData": {
+    "icon": "images/payman.jpg",
+    "iconSmall": "images/payman.jpg",
+    "category": "message"
+  },
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "Create Voucher",
+      "description": "Activity that requests a new vouchers to be created from within a journey"
     }
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [{
+        "emailAddress": "{{Contact.Default.Email}}"
+      }],
+      "outArguments": [{
+        "voucherCode": ""
+      }],
+      "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/execute",
+      "verb": "POST",
+      "body": "",
+      "header": "",
+      "format": "json",
+      "useJwt": true,
+      "timeout": 10000
+    }
+  },
+  "configurationArguments": {
+    "applicationExtensionKey": "je-voucher-request-activity",
+    "defaults": {
+      "amount": "10"
+    },
+    "save": {
+      "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/save/",
+      "verb": "POST",
+      "body": "",
+      "format": "json",
+      "useJwt": false
+    },
+    "publish": {
+      "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/publish/",
+      "verb": "POST",
+      "body": "",
+      "format": "json",
+      "useJwt": false
+    },
+    "validate": {
+      "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/validate/",
+      "verb": "POST",
+      "body": "",
+      "format": "json",
+      "useJwt": false
+    }
+  },
+  "wizardSteps": [{
+    "label": "Choose Data Extension",
+    "key": "step1"
+  }, {
+    "label": "Configure Voucher",
+    "key": "step2"
+  }, {
+    "label": "Confirm",
+    "key": "step3"
+  }],
+  "userInterfaces": {
+    "configModal": {
+      "url": "https://je-voucher-activity.herokuapp.com/ixn/activities/create-voucher/",
+      "height": 400,
+      "width": 800
+    }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "outArguments": [{
+          "voucherCode": {
+            "dataType": "Text",
+            "access": "Visible"
+          }
+        }]
+      }
+    }
+  }
 }

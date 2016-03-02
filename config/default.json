@@ -8,6 +8,7 @@
     "clientId": "7lvj9jciogefdvew9fogfvbh",
     "clientSecret": "sBQRDqVdCqveiL8aDyaCwxJJ"
   },
-  "sfmcBaseUrl": "https://www.exacttargetapis.com",
+  "sfmcRestBaseUrl": "https://www.exacttargetapis.com",
+  "sfmcSoapEndpoint": "https://webservice.s7.exacttarget.com/Service.asmx",
   "voucherApiBaseUrl": "http://uk-voucherapi-qa5.simples.je-labs.com"
 }

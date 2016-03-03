@@ -8,10 +8,12 @@ var JWT           = require('./lib/jwtDecoder');
 var path          = require('path');
 var request       = require('request');
 var activity      = require('./routes/activity');
+var helper        = require('./routes/helper');
 var pkgjson       = require('./package.json');
 
 var app = express();
 var act = activity();
+var hel = helper();
 
 var APIKeys = {
     appId           : config.appId,
@@ -66,6 +68,11 @@ app.post('/ixn/activities/create-voucher/save', act.save);
 app.post('/ixn/activities/create-voucher/validate', act.validate );
 app.post('/ixn/activities/create-voucher/publish', act.publish );
 app.post('/ixn/activities/create-voucher/execute', act.execute );
+
+// Custom helper routes for Custom Activity front-end
+app.get('/ixn/helpers/folder/:id/folders', hel.folder);
+app.get('/ixn/helpers/folder/:id/dataextensions', hel.dataExtension);
+app.get('/ixn/helpers/dataextension/:key/columns', hel.dataExtensionColumn);
 
 app.get( '/version', function( req, res ) {
 	res.setHeader( 'content-type', 'application/json' );

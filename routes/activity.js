@@ -1,5 +1,4 @@
 'use strict';
-var https         = require('https');
 var async         = require('async');
 var activityUtils = require('./activityUtils');
 var config        = require('config');

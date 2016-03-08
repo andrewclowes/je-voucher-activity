@@ -1,6 +1,8 @@
 {
   "port": 3000,
   "tenant": "uk",
+  "feature": "je-voucher-activity",
+  "instance": "001",
   "appId": "9fae01fd-77a1-4438-933d-fc99d48cdc46",
   "appSignature": "hgl1urgnfpzejf1ywcziuhenxrzcifvpuoyfhhrwvi1k4xsse5fxoy5cklo253cqtkiglvfga5wcc2d4iewfgzoplp0tbtj3cebb02bnt3bddrl4cq42exbp0dz20cvpzcejqhwahe1dmq1azxgbq5rf1dc2d4sdlmp3jhl45pjp1st4u4snopqosktwdi5bfillcvlaywfsse0zenylqbh1ejthbqkc3zkbl5omf1djx41bocd4cmltxyrchzl",
   "auth": {
@@ -10,5 +12,9 @@
   },
   "sfmcRestBaseUrl": "https://www.exacttargetapis.com",
   "sfmcSoapEndpoint": "https://webservice.s7.exacttarget.com/Service.asmx",
-  "voucherApiBaseUrl": "http://uk-voucherapi-qa5.simples.je-labs.com"
+  "voucherApiBaseUrl": "http://uk-voucherapi-qa5.simples.je-labs.com",
+  "statsd": {
+    "host": "localhost",
+    "port": 8125
+  }
 }

@@ -109,11 +109,11 @@ var Activity = function () {
     };
 
     var row = sfmcClient.dataExtensionRow(sfmcOptions);
-    row.post(function (error, request, body) {
+    row.post(function (error, response) {
       if (error) {
         callback(error);
-      } else if (body.errorcode) {
-        callback(body);
+      } else if (response.res != null && response.res.statusCode != 200) {
+        callback(response);
       } else {
         callback(null, { voucherCode: options.voucher.voucherCode });
       }

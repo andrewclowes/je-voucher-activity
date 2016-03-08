@@ -5,11 +5,13 @@ var config        = require('config');
 var moment        = require('moment');
 var SfmcClient    = require('../lib/sfmc/sfmcClient');
 var VoucherClient = require('../lib/voucherApi/voucherApiClient');
+var statsdClientFactory = require('../lib/statsd/statsdClientFactory');
 
 var Activity = function () {
   var activity = {};
 
-  var sfmcClient = new SfmcClient(config);
+  var statsdClient = new statsdClientFactory.create(config);
+  var sfmcClient = new SfmcClient(config, statsdClient);
   var voucherClient = new VoucherClient(config);
 
   var voucherTypes = {

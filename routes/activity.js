@@ -12,7 +12,7 @@ var Activity = function () {
 
   var statsdClient = new statsdClientFactory.create(config);
   var sfmcClient = new SfmcClient(config, statsdClient);
-  var voucherClient = new VoucherClient(config);
+  var voucherClient = new VoucherClient(config, statsdClient);
 
   var voucherTypes = {
     1: 'Absolute',

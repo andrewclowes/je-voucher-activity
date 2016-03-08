@@ -10,7 +10,7 @@
     "config": "~1.19.0",
     "elapsed-time": "~0.0.1",
     "express": "~3.5.0",
-    "fuel": "~0.6.0",
+    "extend": "~3.0.0",
     "fuel-rest": "~2.0.2",
     "fuel-soap": "~1.2.0",
     "jade": "~1.11.0",

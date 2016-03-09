@@ -1,11 +1,11 @@
-var config        = require('config');
-var SfmcClient    = require('../lib/sfmc/sfmcClient');
-var statsdClientFactory = require('../lib/statsd/statsdClientFactory');
+var config            = require('config');
+var SfmcClient        = require('../lib/sfmc/sfmcClient');
+var createStatsClient = require('../lib/statsd/statsdClientFactory');
 
 var Helper = function () {
   var helper = {};
 
-  var statsdClient = new statsdClientFactory.create(config);
+  var statsdClient = createStatsClient(config);
   var sfmcClient = new SfmcClient(config, statsdClient);
 
   helper.folder = function(req, res) {

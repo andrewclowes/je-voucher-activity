@@ -1,19 +1,23 @@
 'use strict';
 // Module Dependencies
 // -------------------
-var config        = require('config');
-var express       = require('express');
-var http          = require('http');
-var JWT           = require('./lib/jwtDecoder');
-var path          = require('path');
-var request       = require('request');
-var activity      = require('./routes/activity');
-var helper        = require('./routes/helper');
-var pkgjson       = require('./package.json');
+var config              = require('config');
+var express             = require('express');
+var http                = require('http');
+var JWT                 = require('./lib/jwtDecoder');
+var path                = require('path');
+var request             = require('request');
+var activity            = require('./routes/activity');
+var helper              = require('./routes/helper');
+var pkgjson             = require('./package.json');
+var createStatsClient   = require('./lib/statsd/statsdClientFactory');
+var createMonitor       = require('./lib/utilities/responseMonitorFactory');
 
 var app = express();
 var act = activity();
 var hel = helper();
+var statsClient = createStatsClient(config);
+var resMonitor = createMonitor(statsClient);
 
 var APIKeys = {
     appId           : config.appId,
@@ -64,22 +68,22 @@ if ('development' == app.get('env')) {
 }
 
 // Custom Create Voucher Activity Routes
-app.post('/ixn/activities/create-voucher/save', act.save);
-app.post('/ixn/activities/create-voucher/validate', act.validate );
-app.post('/ixn/activities/create-voucher/publish', act.publish );
-app.post('/ixn/activities/create-voucher/execute', act.execute );
+app.post('/ixn/activities/create-voucher/save', resMonitor.monitor("create-voucher-save"), act.save);
+app.post('/ixn/activities/create-voucher/validate', resMonitor.monitor("create-voucher-validate"), act.validate);
+app.post('/ixn/activities/create-voucher/publish', resMonitor.monitor("create-voucher-publish"), act.publish);
+app.post('/ixn/activities/create-voucher/execute', resMonitor.monitor("create-voucher-execute"), act.execute);
 
 // Custom helper routes for Custom Activity front-end
-app.get('/ixn/helpers/folder/:id/folders', hel.folder);
-app.get('/ixn/helpers/folder/:id/dataextensions', hel.dataExtension);
-app.get('/ixn/helpers/dataextension/:key/columns', hel.dataExtensionColumn);
+app.get('/ixn/helpers/folder/:id/folders', resMonitor.monitor("helpers-folders"), hel.folder);
+app.get('/ixn/helpers/folder/:id/dataextensions', resMonitor.monitor("helpers-data-extensions"), hel.dataExtension);
+app.get('/ixn/helpers/dataextension/:key/columns', resMonitor.monitor("helpers-data-extension-columns"), hel.dataExtensionColumn);
 
 app.get( '/version', function( req, res ) {
 	res.setHeader( 'content-type', 'application/json' );
 	res.send(200, JSON.stringify( {
 		version: pkgjson.version
-	} ) );
-} );
+	}));
+});
 
 app.get('/health/check', function(req, res) {
    res.render('check', {});

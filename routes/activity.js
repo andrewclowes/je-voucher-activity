@@ -1,16 +1,16 @@
 'use strict';
-var async         = require('async');
-var activityUtils = require('./activityUtils');
-var config        = require('config');
-var moment        = require('moment');
-var SfmcClient    = require('../lib/sfmc/sfmcClient');
-var VoucherClient = require('../lib/voucherApi/voucherApiClient');
-var statsdClientFactory = require('../lib/statsd/statsdClientFactory');
+var async             = require('async');
+var activityUtils     = require('./activityUtils');
+var config            = require('config');
+var moment            = require('moment');
+var SfmcClient        = require('../lib/sfmc/sfmcClient');
+var VoucherClient     = require('../lib/voucherApi/voucherApiClient');
+var createStatsClient = require('../lib/statsd/statsdClientFactory');
 
 var Activity = function () {
   var activity = {};
 
-  var statsdClient = new statsdClientFactory.create(config);
+  var statsdClient = createStatsClient(config);
   var sfmcClient = new SfmcClient(config, statsdClient);
   var voucherClient = new VoucherClient(config, statsdClient);
 

@@ -1,6 +1,7 @@
 var config            = require('config');
 var SfmcClient        = require('../lib/sfmc/sfmcClient');
-var createStatsClient = require('../lib/statsd/statsdClientFactory');
+var createStatsClient = require('../lib/statsd/statsdClient');
+var Errors            = require('../lib/utilities/errors');
 
 var Helper = function () {
   var helper = {};
@@ -8,9 +9,10 @@ var Helper = function () {
   var statsdClient = createStatsClient(config);
   var sfmcClient = new SfmcClient(config, statsdClient);
 
-  helper.folder = function(req, res) {
+  helper.folder = function(req, res, next) {
     if (!req.params.id) {
-      res.send(500, {error: "The id parameter of the folder is undefined"});
+      next(new Errors.ActivityError('The id parameter of the folder is undefined', req.params));
+      return;
     }
 
     var options = {
@@ -33,16 +35,17 @@ var Helper = function () {
     var folder = sfmcClient.folder(options);
     folder.get(function (error, result) {
       if (error) {
-        res.send(500, error);
+        next(new Errors.ApiError('There was an error when requesting folders from marketing cloud', 'marketingcloud', error));
       } else {
         res.send(200, result.body.Results);
       }
     });
   };
 
-  helper.dataExtension = function(req, res) {
+  helper.dataExtension = function(req, res, next) {
     if (!req.params.id) {
-      res.send(500, {error: "The id parameter of the folder is undefined"});
+      next(new Errors.ActivityError('The id parameter of the folder is undefined', req.params));
+      return;
     }
 
     var options = {
@@ -65,16 +68,17 @@ var Helper = function () {
     var dataExtension = sfmcClient.dataExtension(options);
     dataExtension.get(function (error, result) {
       if (error) {
-        res.send(500, error);
+        next(new Errors.ApiError('There was an error when requesting data extensions from marketing cloud', 'marketingcloud', error));
       } else {
         res.send(200, result.body.Results);
       }
     });
   };
 
-  helper.dataExtensionColumn = function(req, res) {
+  helper.dataExtensionColumn = function(req, res, next) {
     if (!req.params.key) {
-      res.send(500, {error: "The key parameter of the data extension is undefined"});
+      next(new Errors.ActivityError('The key parameter of the data extension is undefined', req.params));
+      return;
     }
 
     var options = {
@@ -89,7 +93,7 @@ var Helper = function () {
     var column = sfmcClient.dataExtensionColumn(options);
     column.get(function (error, result) {
       if (error) {
-        res.send(500, error);
+        next(new Errors.ApiError('There was an error when requesting columns from marketing cloud', 'marketingcloud', error));
       } else {
         res.send(200, result.body.Results);
       }

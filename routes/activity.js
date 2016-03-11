@@ -83,7 +83,7 @@ var Activity = function () {
       if (error) {
         callback(new Errors.ApiError('There was an error when trying to communicate with Voucher Api', 'voucherapi', error));
       } else if (response.statusCode != 200) {
-        callback(new Error.ApiError('There was an issue requesting vouchers from the Voucher Api', 'voucherapi', body));
+        callback(new Errors.ApiError('There was an issue requesting vouchers from the Voucher Api', 'voucherapi', body));
       } else {
         var bodyObj = JSON.parse(body);
         if (bodyObj == null || bodyObj.Code == null) {
